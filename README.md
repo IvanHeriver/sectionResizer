@@ -96,4 +96,4 @@ Future development may include `on()` and `off()` methods to setup listeners for
 
 # Licence
 
-This is released under the GNU GPL v3.0 licence.
+This is released under the MIT licence.
