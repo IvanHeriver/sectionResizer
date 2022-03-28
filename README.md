@@ -40,11 +40,11 @@ sectionResizer(document.getElementById("resizer-container"), {
 });
 ```
 
-You can add data attributes on the children elements to specify their initial and minimum sizes with the `[data-min]` and `[data-init]`. These attributes expects pixels values (without the unit px!). Default minimum sizes for the children is 100px. It is better to specify an initial value only for some of the children (not all).
+You can add data attributes on the children elements to specify their initial, minimum and maximum sizes with the `[data-init]`, `[data-min]` and `[data-max]`. These attributes expects pixels values (without the unit px!). Default minimum sizes for the children is 100px. It is better to specify an initial value only for some of the children (not all).
 
 ```html
 <div id="resizer-container">
-  <div data-min="500" data-init="500">...</div>
+  <div data-min="500" data-max="1000" data-init="500">...</div>
   <div data-min="500">...</div>
   <div>...</div>
 </div>
