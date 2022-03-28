@@ -1,5 +1,5 @@
 {
-  "name": "section-resizer",
+  "name": "@ivanheriver/section-resizer",
   "version": "0.0.2022-03-11",
   "description": "Make child elements of a container resizable.",
   "main": "dist/bundle.js",
@@ -7,8 +7,24 @@
     "dev": "rollup -c -w",
     "build": "rollup -c"
   },
-  "keywords": [],
-  "author": "Ivan Horner",
+  "keywords": [
+    "resizer",
+    "resize",
+    "sections",
+    "children",
+    "split",
+    "view"
+  ],
+  "author": {
+    "name": "Ivan Horner",
+    "email": "contact@ihdev.fr",
+    "url": "https://ihdev.fr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IvanHeriver/sectionResizer.git"
+  },
+  "homepage": "https://github.com/IvanHeriver/sectionResizer",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.1",
