@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "ES6"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["test", "node_module", "dist", "archive"]
+}

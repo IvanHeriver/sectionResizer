@@ -1,0 +1,20 @@
+{
+  "name": "section-resizer",
+  "version": "0.0.2022-03-11",
+  "description": "Make child elements of a container resizable.",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "Ivan Horner",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.1",
+    "rollup": "^2.70.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
+  }
+}
