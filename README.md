@@ -11,7 +11,7 @@ If you like/use this library, please show your support by staring the repo, than
 Install the library using npm:
 
 ```bash
-npm install @IvanHorner/section-resizer
+npm install @ivanheriver/section-resizer
 ```
 
 And then you can import the `sectionResizer()` function
