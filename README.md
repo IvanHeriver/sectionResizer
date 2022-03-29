@@ -17,7 +17,7 @@ npm install @ivanheriver/section-resizer
 And then you can import the `sectionResizer()` function
 
 ```js
-import sectionResizer from "section-resizer";
+import sectionResizer from "@ivanheriver/section-resizer";
 ```
 
 Alternatively, you can download the section-resizer.min.js file located in the dist folder and use a script tag to load the the `sectionResizer()` function in you project.
@@ -27,7 +27,7 @@ Alternatively, you can download the section-resizer.min.js file located in the d
 Let's say you have an HTML document containing a div with the id "resizer-container". To make the children resizable you only need the following JavaScript:
 
 ```js
-import sectionResizer from "section-resizer";
+import sectionResizer from "@ivanheriver/section-resizer";
 
 const resizer = sectionResizer(document.getElementById("resizer-container"));
 ```
@@ -68,7 +68,7 @@ These 2 methods return promises that resolve at the next animation frame.
 Instead of specifying the initial size in the HTML, you can do everything in JavaScript:
 
 ```js
-import sectionResizer from "section-resizer";
+import sectionResizer from "@ivanheriver/section-resizer";
 
 const resizer = sectionResizer(document.getElementById("resizer-container"));
 resizer.configure([
@@ -85,9 +85,9 @@ Future development may include `on()` and `off()` methods to setup listeners for
   `(initial_sizes, current_sizes, index) => {}`
 - resizeend: whenever resizing due to user interaction terminates
   `(previous_sizes, new_sizes, index) => {}`
-- resizewhish: whenever resizing is occuring due to user interaction even if the resizing actually doesn't occure due to
+- resizewish: whenever resizing is occuring due to user interaction even if the resizing actually doesn't occure due to
   min or max size conditions preventing any change.
-  `(initial_sizes, current_sizes, whished_sizes, index) => {}`
+  `(initial_sizes, current_sizes, wished_sizes, index) => {}`
 - sizechange: whenever one or more of the children size changes due
   to any reason (e. g. user interaction, addition/deletion of children, window resizing, ...)
   `(sizes) => {}`
