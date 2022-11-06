@@ -1,6 +1,6 @@
 {
   "name": "@ivanheriver/section-resizer",
-  "version": "0.0.2022-03-29",
+  "version": "0.0.3",
   "description": "Make child elements of a container resizable.",
   "main": "dist/bundle.js",
   "scripts": {
