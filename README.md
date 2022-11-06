@@ -4,8 +4,6 @@ This minimalistic JavaScript library can be used to make children of a container
 
 Check out this page where I showcase some possible use.
 
-If you like/use this library, please show your support by staring the repo, thanks!
-
 # How to install
 
 Install the library using npm:
