@@ -1,6 +1,6 @@
 # sectionResizer
 
-This minimalistic JavaScript library can be used to make children of a container be resizable in simple and predictable way using only one line of code. A single sectionResizer() function has to be called with a single mandatory argument, a HTML element of a container, and voilà, the container's children can be resized!
+This minimalistic JavaScript library can be used to make children of a container resizable in a simple and predictable way using only one line of code. A single sectionResizer() function has to be called with a single mandatory argument, the HTML element of a container, and voilà, the container's children can be resized!
 
 Check out this page where I showcase some possible use.
 
