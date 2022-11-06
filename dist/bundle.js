@@ -312,7 +312,10 @@ function sectionResizer(container, config = {
         container_size = container.getBoundingClientRect()[w_h];
         initial_container_size = container_size;
         // set needed style attributes to the container
-        container.style.position = "relative";
+        const current_position_style = window.getComputedStyle(container).getPropertyValue("position");
+        if (!["absolute", "relative"].includes(current_position_style)) {
+            container.style.position = "relative";
+        }
         container.style.overflow = "auto";
         container.style.display = "grid";
         //FIXME: I should get rid of these conditions on padding and margin...
