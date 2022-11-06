@@ -5,7 +5,9 @@
   "main": "dist/bundle.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "build": "rollup -c && cp dist/bundle.js example/section-resizer.js",
+    "publish": "npm publish .",
+    "gh-pages": "gh-pages -d example"
   },
   "keywords": [
     "resizer",

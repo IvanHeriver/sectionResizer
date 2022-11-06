@@ -1,4 +1,4 @@
-import sectionResizer from "../../dist/bundle.js";
+import sectionResizer from "./section-resizer.js";
 
 const container = document.getElementById("content");
 const container_left = document.getElementById("content-left");
@@ -23,7 +23,6 @@ srMain.configure([
   { index: 1, min: minSize * srRightTop.getSections().length },
 ]);
 
-// srMain.configure({})
 console.log(srRightTop.getSections());
 
 const btn = document.getElementById("add-btn");
