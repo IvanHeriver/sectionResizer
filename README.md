@@ -2,7 +2,7 @@
 
 This minimalistic JavaScript library can be used to make children of a container resizable in a simple and predictable way using only one line of code. A single sectionResizer() function has to be called with a single mandatory argument, the HTML element of a container, and voilà, the container's children can be resized!
 
-Check out [this page](https://ivanheriver.github.io/sectionResizer/) which shows the example located in the `example/` folder of this repo.
+Check out [https://ivanheriver.github.io/sectionResizer/](https://ivanheriver.github.io/sectionResizer/) which shows the example located in the `example/` folder of this repo.
 
 # How to install
 
@@ -29,7 +29,19 @@ import sectionResizer from "@ivanheriver/section-resizer";
 
 const resizer = sectionResizer(document.getElementById("resizer-container"));
 ```
+To customize the appearance of the separators, you can use the following CSS selectors:
 
+```css
+.sr-separator {
+  width: 1px;
+  height: 1px;
+  background-color: lightblue;
+}
+.sr-separator-highlight {
+  width: 2px;
+  height: 2px;
+}
+```
 You can make the children be organized verically or horizontally (default):
 
 ```js
