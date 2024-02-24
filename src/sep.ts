@@ -5,7 +5,7 @@ export function createSeparators(
   n_children: number,
   mode: "vertical" | "horizontal"
 ): Array<separator> {
-  const anchor_size = "20px";
+  const anchor_size = "10px";
 
   if (n_children === 0) return [];
   const separators: Array<separator> = Array(n_children - 1)
