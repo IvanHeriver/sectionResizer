@@ -1,5 +1,5 @@
 function createSeparators(parent, n_children, mode) {
-    const anchor_size = "20px";
+    const anchor_size = "10px";
     if (n_children === 0)
         return [];
     const separators = Array(n_children - 1)
