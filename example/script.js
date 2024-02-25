@@ -8,7 +8,7 @@ srMain.resize([{ index: 0, size: 200 }]); // make first section initial size 200
 // setup the left container to be a vertical section-resizer
 const containerLeft = document.getElementById("content-left");
 const srLeft = sectionResizer(containerLeft, { mode: "vertical" });
-srLeft.configure({ min: 200 }); // make top section of left panel minimum size 200px
+srLeft.configure({ min: 100 }); // make all sections of left panel minimum size 100px
 
 // ... same for right container
 const containerRight = document.getElementById("content-right");
