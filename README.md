@@ -29,6 +29,7 @@ import sectionResizer from "@ivanheriver/section-resizer";
 
 const resizer = sectionResizer(document.getElementById("resizer-container"));
 ```
+
 To customize the appearance of the separators, you can use the following CSS selectors:
 
 ```css
@@ -42,6 +43,7 @@ To customize the appearance of the separators, you can use the following CSS sel
   height: 2px;
 }
 ```
+
 You can make the children be organized verically or horizontally (default):
 
 ```js
@@ -89,19 +91,25 @@ resizer.configure({ max: 900 });
 resizer.resizer([{ index: 0, size: 500 }]);
 ```
 
+# Todos
+
+Misc improvements:
+
+- make anchor width customizable
+
 Future development may include `on()` and `off()` methods to setup listeners for specific events occuring within the sectionResizer. The events may include the following
 
-- resize: whenever resizing is occuring due to user interaction
+- `resize`: whenever resizing is occuring due to user interaction
   `(initial_sizes, current_sizes, index) => {}`
-- resizeend: whenever resizing due to user interaction terminates
+- `resizeend`: whenever resizing due to user interaction terminates
   `(previous_sizes, new_sizes, index) => {}`
-- resizewish: whenever resizing is occuring due to user interaction even if the resizing actually doesn't occure due to
+- `resizewish`: whenever resizing is occuring due to user interaction even if the resizing actually doesn't occure due to
   min or max size conditions preventing any change.
   `(initial_sizes, current_sizes, wished_sizes, index) => {}`
-- sizechange: whenever one or more of the children size changes due
+- `sizechange`: whenever one or more of the children size changes due
   to any reason (e. g. user interaction, addition/deletion of children, window resizing, ...)
   `(sizes) => {}`
-- highlight: whenever a separator highlight status is changed
+- `highlight`: whenever a separator highlight status is changed
   `(index, highlighted) => {}`
 
 # Licence
