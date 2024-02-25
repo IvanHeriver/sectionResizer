@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IvanHeriver/sectionResizer.git"
+    "url": "git+https://github.com/IvanHeriver/sectionResizer.git"
   },
   "homepage": "https://github.com/IvanHeriver/sectionResizer",
   "license": "MIT",
