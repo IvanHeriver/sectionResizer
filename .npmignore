@@ -1,4 +1,5 @@
 archive/
+.github/
 node_modules/
 src/
 test/
