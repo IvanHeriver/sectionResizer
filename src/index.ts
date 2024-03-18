@@ -67,9 +67,11 @@ export default function sectionResizer(
     initial_container_size = container_size;
 
     // set needed style attributes to the container
-    const current_position_style = window.getComputedStyle(container).getPropertyValue("position")
+    const current_position_style = window
+      .getComputedStyle(container)
+      .getPropertyValue("position");
     if (!["absolute", "relative"].includes(current_position_style)) {
-        container.style.position = "relative";
+      container.style.position = "relative";
     }
     container.style.overflow = "auto";
     container.style.display = "grid";
@@ -208,18 +210,24 @@ export default function sectionResizer(
     );
   }
 
-  function buildDefaultSection(element: HTMLElement) {
+  function buildDefaultSection(element: HTMLElement): section {
+    const dataset_min_size: string =
+      element.dataset.min == undefined ? "" : element.dataset.min;
     const min_size =
       "min" in element.dataset
-        ? Math.max(parseFloat(element.dataset.min), 50)
+        ? Math.max(parseFloat(dataset_min_size), 50)
         : 50;
+    const dataset_def_size: string =
+      element.dataset.init == undefined ? "" : element.dataset.init;
     const def_size =
       "init" in element.dataset
-        ? Math.max(min_size, parseFloat(element.dataset.init))
-        : null;
+        ? Math.max(min_size, parseFloat(dataset_def_size))
+        : 0;
+    const dataset_max_size: string =
+      element.dataset.max == undefined ? "" : element.dataset.max;
     const max_size =
       "max" in element.dataset
-        ? Math.max(min_size, parseFloat(element.dataset.max))
+        ? Math.max(min_size, parseFloat(dataset_max_size))
         : Number.POSITIVE_INFINITY;
     return {
       element: element,
@@ -325,7 +333,7 @@ export default function sectionResizer(
   }
   function resize(config: Array<resizeItem>): Promise<void> {
     // requestAnimationFrame(() => {
-    const new_sizes = sections.map((e) => null);
+    const new_sizes: (number | null)[] = sections.map((e) => null);
     config.forEach((e) => {
       if (
         e.index !== undefined &&
