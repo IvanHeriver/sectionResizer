@@ -1,4 +1,4 @@
-import sectionResizer from "./section-resizer.js";
+import sectionResizer from "./section-resizer/index.js";
 
 // setup the main content as an horizontal section-resizer
 const container = document.getElementById("content");
@@ -21,12 +21,22 @@ const srRightTop = sectionResizer(containerRightTop);
 
 // configure + and - buttons to showcase dynamic support of section-resizer
 const btnPlus = document.getElementById("add-btn");
+let nCreated = 0;
 btnPlus.addEventListener("click", () => {
   const n = srRightTop.getSections().length;
   if (n < 10) {
+    nCreated++;
     const div = document.createElement("div");
     div.classList.add("child");
-    div.textContent = `div #${n + 1}`;
+    const btn = document.createElement("button")
+    btn.textContent = "Delete me"
+    btn.addEventListener("click", () => {
+      containerRightTop.removeChild(div)
+    })
+    const txt = document.createElement("div")
+    txt.textContent = `div #${nCreated}`;
+    div.appendChild(txt)
+    div.appendChild(btn)
     containerRightTop.appendChild(div);
   }
 });
