@@ -1,14 +1,15 @@
 import typescript from "@rollup/plugin-typescript";
 import terser from "@rollup/plugin-terser";
+import copy from "rollup-plugin-copy";
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: "src/main.ts",
+  input: "src/index.ts",
   output: [
     {
       sourcemap: !production,
-      file: "dist/bundle.js",
+      file: "dist/index.js",
       // format: "iife", // browser
       format: "es", // browser
       // format: "cjs", // node
@@ -18,7 +19,7 @@ export default {
     },
     {
       sourcemap: !production,
-      file: "dist/bundle.min.js",
+      file: "dist/index.min.js",
       // format: "iife", // browser
       format: "es", // browser
       // format: "cjs", // node
@@ -33,6 +34,15 @@ export default {
       tsconfig: "./tsconfig.json",
       sourceMap: !production,
       inlineSources: !production,
+    }),
+    copy({
+      targets: [
+        {
+          src: "dist/*",
+          dest: "example/section-resizer/",
+        },
+      ],
+      hook: "writeBundle",
     }),
   ],
 };

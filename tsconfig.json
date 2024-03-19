@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2016"
+    "target": "ES2016", 
+    "declaration": true,
+    "outDir": "dist",
+    "strictNullChecks": true,
   },
   "include": ["src/**/*"],
   "exclude": ["test", "node_module", "dist", "archive"]
