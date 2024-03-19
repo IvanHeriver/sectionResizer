@@ -3,6 +3,7 @@ archive/
 node_modules/
 src/
 test/
+example/
 dist/*.js.map
 package-lock.json
 tsconfig.json
