@@ -6,8 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c",
-    "publish": "npm publish ."
+    "build": "rollup -c"
   },
   "keywords": [
     "resizer",
