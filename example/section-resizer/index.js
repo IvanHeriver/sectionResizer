@@ -128,14 +128,15 @@ function updateSectionSizes(sections, new_sizes, container_size) {
             return e;
         }
     });
+    const new_sizes_numbers = new_sizes;
     if (unknown_indices.length > 0) {
         // if there is unknown new sizes
-        let sum_new_sizes = sum(new_sizes);
+        let sum_new_sizes = sum(new_sizes_numbers);
         if (sum_new_sizes < reference_space) {
             // if the sum of the new sizes below the reference space, we try to grow the unkown sizes as much as possible
             const growth_to_distribute = reference_space - sum_new_sizes;
-            const unknown_new_sizes = scaleUpSizes(new_sizes.filter((_, i) => unknown_indices.includes(i)), sections
-                .map((e, i) => e.max_size - new_sizes[i])
+            const unknown_new_sizes = scaleUpSizes(new_sizes_numbers.filter((_, i) => unknown_indices.includes(i)), sections
+                .map((e, i) => e.max_size - new_sizes_numbers[i])
                 .filter((_, i) => unknown_indices.includes(i)), growth_to_distribute);
             let k = 0;
             new_sizes = new_sizes.map((e, i) => {
@@ -149,15 +150,16 @@ function updateSectionSizes(sections, new_sizes, container_size) {
     }
     // If needed, adjuste the new sizes by scaling down or up
     // the new_sizes while enforcing the min and max sizes specified
-    const space_to_adjust = sum(new_sizes) - reference_space;
+    let new_size_scaled = new_sizes_numbers;
+    const space_to_adjust = sum(new_sizes_numbers) - reference_space;
     if (space_to_adjust > 0) {
-        new_sizes = scaleDownSizes(new_sizes, new_sizes.map((e, i) => e - sections[i].min_size), space_to_adjust);
+        new_size_scaled = scaleDownSizes(new_sizes_numbers, new_sizes_numbers.map((e, i) => e - sections[i].min_size), space_to_adjust);
     }
     else if (space_to_adjust < 0) {
-        new_sizes = scaleUpSizes(new_sizes, new_sizes.map((e, i) => sections[i].max_size - e), -space_to_adjust);
+        new_size_scaled = scaleUpSizes(new_sizes_numbers, new_sizes_numbers.map((e, i) => sections[i].max_size - e), -space_to_adjust);
     }
     // update the sections
-    return sections.map((e, i) => (Object.assign(Object.assign({}, e), { cur_size: new_sizes[i] })));
+    return sections.map((e, i) => (Object.assign(Object.assign({}, e), { cur_size: new_size_scaled[i] })));
 }
 function scaleUpSizes(new_sizes, max_growth, space_to_fill) {
     // let's try and grow everything equally
@@ -312,7 +314,9 @@ function sectionResizer(container, config = {
         container_size = container.getBoundingClientRect()[w_h];
         initial_container_size = container_size;
         // set needed style attributes to the container
-        const current_position_style = window.getComputedStyle(container).getPropertyValue("position");
+        const current_position_style = window
+            .getComputedStyle(container)
+            .getPropertyValue("position");
         if (!["absolute", "relative"].includes(current_position_style)) {
             container.style.position = "relative";
         }
@@ -417,14 +421,17 @@ function sectionResizer(container, config = {
         separators.forEach((s, i) => s.update(`${(position[i] / container_size) * 100}%`));
     }
     function buildDefaultSection(element) {
+        const dataset_min_size = element.dataset.min == undefined ? "" : element.dataset.min;
         const min_size = "min" in element.dataset
-            ? Math.max(parseFloat(element.dataset.min), 50)
+            ? Math.max(parseFloat(dataset_min_size), 50)
             : 50;
+        const dataset_def_size = element.dataset.init == undefined ? "" : element.dataset.init;
         const def_size = "init" in element.dataset
-            ? Math.max(min_size, parseFloat(element.dataset.init))
-            : null;
+            ? Math.max(min_size, parseFloat(dataset_def_size))
+            : 0;
+        const dataset_max_size = element.dataset.max == undefined ? "" : element.dataset.max;
         const max_size = "max" in element.dataset
-            ? Math.max(min_size, parseFloat(element.dataset.max))
+            ? Math.max(min_size, parseFloat(dataset_max_size))
             : Number.POSITIVE_INFINITY;
         return {
             element: element,

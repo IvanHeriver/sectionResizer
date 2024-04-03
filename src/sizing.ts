@@ -38,7 +38,7 @@ export function updateSectionSizes(
 
   // get the indices of unknown new sizes
   // and set unknwon new sizes to minimum sizes
-  const unknown_indices = [];
+  const unknown_indices: number[] = [];
   new_sizes = new_sizes.map((e, i) => {
     if (e === null) {
       unknown_indices.push(i);
@@ -47,17 +47,18 @@ export function updateSectionSizes(
       return e;
     }
   });
+  const new_sizes_numbers = new_sizes as number[];
 
   if (unknown_indices.length > 0) {
     // if there is unknown new sizes
-    let sum_new_sizes = sum(new_sizes);
+    let sum_new_sizes = sum(new_sizes_numbers);
     if (sum_new_sizes < reference_space) {
       // if the sum of the new sizes below the reference space, we try to grow the unkown sizes as much as possible
       const growth_to_distribute = reference_space - sum_new_sizes;
       const unknown_new_sizes = scaleUpSizes(
-        new_sizes.filter((_, i) => unknown_indices.includes(i)),
+        new_sizes_numbers.filter((_, i) => unknown_indices.includes(i)),
         sections
-          .map((e, i) => e.max_size - new_sizes[i])
+          .map((e, i) => e.max_size - new_sizes_numbers[i])
           .filter((_, i) => unknown_indices.includes(i)),
         growth_to_distribute
       );
@@ -78,23 +79,24 @@ export function updateSectionSizes(
 
   // If needed, adjuste the new sizes by scaling down or up
   // the new_sizes while enforcing the min and max sizes specified
-  const space_to_adjust = sum(new_sizes) - reference_space;
+  let new_size_scaled: number[] = new_sizes_numbers;
+  const space_to_adjust = sum(new_sizes_numbers) - reference_space;
   if (space_to_adjust > 0) {
-    new_sizes = scaleDownSizes(
-      new_sizes,
-      new_sizes.map((e, i) => e - sections[i].min_size),
+    new_size_scaled = scaleDownSizes(
+      new_sizes_numbers,
+      new_sizes_numbers.map((e, i) => e - sections[i].min_size),
       space_to_adjust
     );
   } else if (space_to_adjust < 0) {
-    new_sizes = scaleUpSizes(
-      new_sizes,
-      new_sizes.map((e, i) => sections[i].max_size - e),
+    new_size_scaled = scaleUpSizes(
+      new_sizes_numbers,
+      new_sizes_numbers.map((e, i) => sections[i].max_size - e),
       -space_to_adjust
     );
   }
 
   // update the sections
-  return sections.map((e, i) => ({ ...e, cur_size: new_sizes[i] }));
+  return sections.map((e, i) => ({ ...e, cur_size: new_size_scaled[i] }));
 }
 
 function scaleUpSizes(
