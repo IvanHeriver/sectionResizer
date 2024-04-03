@@ -1,5 +1,5 @@
-import { configuration } from "./types";
-export type { sectionConfig, sectionsConfig } from "./types";
+import { TSectionResizerConfig, TSectionResizer } from "./types";
+export type { TSectionResizer, TSectionConfig, TMultiSectionsConfig, } from "./types";
 /**
  * This function makes an HTMLElement a sectionResizer where all its children
  * can be resized by dragging separators. Each child can have
@@ -10,4 +10,4 @@ export type { sectionConfig, sectionsConfig } from "./types";
  * @param config Main configuration options for the section resizer.
  * @returns A sectionResizer object.
  */
-export default function sectionResizer(container: HTMLElement, config?: configuration): {};
+export default function sectionResizer(container: HTMLElement, config?: TSectionResizerConfig): TSectionResizer;

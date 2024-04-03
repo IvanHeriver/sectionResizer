@@ -28,15 +28,15 @@ btnPlus.addEventListener("click", () => {
     nCreated++;
     const div = document.createElement("div");
     div.classList.add("child");
-    const btn = document.createElement("button")
-    btn.textContent = "Delete me"
+    const btn = document.createElement("button");
+    btn.textContent = "Delete me";
     btn.addEventListener("click", () => {
-      containerRightTop.removeChild(div)
-    })
-    const txt = document.createElement("div")
+      containerRightTop.removeChild(div);
+    });
+    const txt = document.createElement("div");
     txt.textContent = `div #${nCreated}`;
-    div.appendChild(txt)
-    div.appendChild(btn)
+    div.appendChild(txt);
+    div.appendChild(btn);
     containerRightTop.appendChild(div);
   }
 });
