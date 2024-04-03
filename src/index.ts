@@ -1,16 +1,21 @@
 import { createSeparators } from "./sep";
 import {
-  configuration,
-  resizeItem,
-  section,
-  sectionConfig,
-  sectionsConfig,
-  separator,
+  TSectionResizerConfig,
+  TResizeConfig,
+  TSection,
+  TSectionConfig,
+  TMultiSectionsConfig,
+  TSectionSeparator,
+  TSectionResizer,
 } from "./types";
 import { updateSectionSizes } from "./sizing";
 import { updateSectionSizesOnResize } from "./resizing";
 
-export type { sectionConfig, sectionsConfig } from "./types";
+export type {
+  TSectionResizer,
+  TSectionConfig,
+  TMultiSectionsConfig,
+} from "./types";
 // export type sectionsConfig
 
 const warn: Function = console.warn;
@@ -27,12 +32,12 @@ const warn: Function = console.warn;
  */
 export default function sectionResizer(
   container: HTMLElement,
-  config: configuration = {
+  config: TSectionResizerConfig = {
     mode: "horizontal",
     resizeMode: "distributed",
   }
-): {} {
-  const default_config: configuration = {
+): TSectionResizer {
+  const default_config: TSectionResizerConfig = {
     mode: "horizontal",
     resizeMode: "distributed",
   };
@@ -52,9 +57,9 @@ export default function sectionResizer(
   let container_size: number;
 
   let initial_container_size: number;
-  let sections: Array<section>;
+  let sections: Array<TSection>;
 
-  let separators: Array<separator>;
+  let separators: Array<TSectionSeparator>;
 
   let resize_observer: ResizeObserver;
   let mutation_observer: MutationObserver;
@@ -210,7 +215,7 @@ export default function sectionResizer(
     );
   }
 
-  function buildDefaultSection(element: HTMLElement): section {
+  function buildDefaultSection(element: HTMLElement): TSection {
     const dataset_min_size: string =
       element.dataset.min == undefined ? "" : element.dataset.min;
     const min_size =
@@ -308,7 +313,7 @@ export default function sectionResizer(
    * @returns A promise that resolve at the next animation frame.
    */
   function configure(
-    config: Array<sectionConfig> | sectionsConfig
+    config: Array<TSectionConfig> | TMultiSectionsConfig
   ): Promise<void> {
     if (!Array.isArray(config)) {
       config = sections.map((_, index) => ({
@@ -331,7 +336,7 @@ export default function sectionResizer(
     setInitialSize();
     return requestAnimationFramePromise();
   }
-  function resize(config: Array<resizeItem>): Promise<void> {
+  function resize(config: Array<TResizeConfig>): Promise<void> {
     // requestAnimationFrame(() => {
     const new_sizes: (number | null)[] = sections.map((e) => null);
     config.forEach((e) => {
@@ -352,7 +357,7 @@ export default function sectionResizer(
 
     return requestAnimationFramePromise();
   }
-  function getSections(): Array<section> {
+  function getSections(): Array<TSection> {
     return sections;
   }
   return {

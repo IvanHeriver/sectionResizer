@@ -1,13 +1,13 @@
-export interface section {
+export type TSection = {
   element: HTMLElement;
   min_size: number;
   max_size: number;
   def_size: number;
   cur_size: number;
   ini_size: number;
-}
+};
 
-export interface separator {
+export type TSectionSeparator = {
   element: HTMLElement;
   position: number;
   initial_position: number;
@@ -16,14 +16,14 @@ export interface separator {
   setHighlight: Function;
   on: Function;
   off: Function;
-}
+};
 
-export interface configuration {
+export type TSectionResizerConfig = {
   mode: "horizontal" | "vertical";
   resizeMode: "distributed" | "left" | "right";
-}
+};
 
-export type sectionConfig = {
+export type TSectionConfig = {
   /**
    * Index of the section to configure
    */
@@ -37,7 +37,7 @@ export type sectionConfig = {
    */
   max?: number;
 };
-export type sectionsConfig = {
+export type TMultiSectionsConfig = {
   /**
    * Minimum sizes of all sections
    */
@@ -48,13 +48,15 @@ export type sectionsConfig = {
   max?: number;
 };
 
-export interface configureItem {
-  index: number;
-  min?: number;
-  max?: number;
-}
-
-export interface resizeItem {
+export type TResizeConfig = {
   index: number;
   size: number;
-}
+};
+
+export type TSectionResizer = {
+  configure: (
+    config: Array<TSectionConfig> | TMultiSectionsConfig
+  ) => Promise<void>;
+  resize: (config: Array<TResizeConfig>) => Promise<void>;
+  getSections: () => Array<TSection>;
+};

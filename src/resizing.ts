@@ -1,10 +1,10 @@
-import { section } from "./types";
+import { TSection } from "./types";
 
 function propagateSectionSizeChange(
-  sections: Array<section>,
+  sections: Array<TSection>,
   change: number,
   backward: boolean
-): { remaining: number; sections: Array<section> } {
+): { remaining: number; sections: Array<TSection> } {
   if (sections.length === 0) return { remaining: 0, sections };
   // when change > 0, we try to grow the sections
   // when chnage < 0, we try to shrink the sections
@@ -40,10 +40,10 @@ function propagateSectionSizeChange(
 }
 
 export function updateSectionSizesOnResize(
-  sections: Array<section>,
+  sections: Array<TSection>,
   index: number,
   delta: number
-): Array<section> {
+): Array<TSection> {
   let old_sections = sections.map((e) => ({ ...e, cur_size: e.ini_size }));
   let new_sections = old_sections;
   let remaining = delta;

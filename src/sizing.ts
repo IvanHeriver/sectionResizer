@@ -1,4 +1,4 @@
-import { section } from "./types";
+import { TSection } from "./types";
 
 function sum(array: Array<number>): number {
   return array.reduce((a, c) => a + c, 0);
@@ -9,10 +9,10 @@ function arrayLog(title: string, element: Array<number>) {
 }
 
 export function updateSectionSizes(
-  sections: Array<section>,
+  sections: Array<TSection>,
   new_sizes: Array<number | null>,
   container_size: number
-): Array<section> {
+): Array<TSection> {
   // make sure that the new sizes are larger than min sizes
   new_sizes = new_sizes.map((e, i) =>
     e === null ? null : Math.max(sections[i].min_size, e)

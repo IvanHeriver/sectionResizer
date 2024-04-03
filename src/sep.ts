@@ -1,14 +1,14 @@
-import { separator } from "./types";
+import { TSectionSeparator } from "./types";
 
 export function createSeparators(
   parent: HTMLElement,
   n_children: number,
   mode: "vertical" | "horizontal"
-): Array<separator> {
+): Array<TSectionSeparator> {
   const anchor_size = "10px";
 
   if (n_children === 0) return [];
-  const separators: Array<separator> = Array(n_children - 1)
+  const separators: Array<TSectionSeparator> = Array(n_children - 1)
     .fill("")
     .map((_) => {
       const element = createSep(mode, anchor_size);
