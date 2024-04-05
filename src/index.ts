@@ -349,7 +349,6 @@ export default function sectionResizer(
         new_sizes[e.index] = e.size;
       }
     });
-    console.log("new_sizes", new_sizes);
     sections = updateSectionSizes(sections, new_sizes, container_size);
     update();
     setInitialSize();

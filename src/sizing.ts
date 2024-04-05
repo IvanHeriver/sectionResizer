@@ -4,10 +4,6 @@ function sum(array: Array<number>): number {
   return array.reduce((a, c) => a + c, 0);
 }
 
-function arrayLog(title: string, element: Array<number>) {
-  console.log(`${title}: ${element.map((e) => `${e}`).join(", ")}`);
-}
-
 export function updateSectionSizes(
   sections: Array<TSection>,
   new_sizes: Array<number | null>,
