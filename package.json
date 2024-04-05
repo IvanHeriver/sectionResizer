@@ -1,6 +1,6 @@
 {
   "name": "@ivanheriver/section-resizer",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Make child elements of a container resizable.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
