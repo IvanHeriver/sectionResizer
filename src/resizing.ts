@@ -49,13 +49,7 @@ export function updateSectionSizesOnResize(
   let remaining = delta;
   let k = 0;
   const max_iteration = 3;
-  // console.log("-----------------------------------------------");
-  // console.log("sections", sections);
-  // console.log("old_sections", old_sections);
-
   while (remaining !== 0 && k < max_iteration) {
-    // console.log("remaining", remaining);
-    // console.log("delta", delta);
     k++;
     // handle the resizing of the elements placed before the separator
     const result_before = propagateSectionSizeChange(
@@ -64,14 +58,12 @@ export function updateSectionSizesOnResize(
       delta,
       true
     );
-    // console.log("result_before", result_before);
     // handle the resizing of the elements placed after the separator
     const result_after = propagateSectionSizeChange(
       old_sections.slice(index + 1),
       -delta,
       false
     );
-    // console.log("result_after", result_after);
     // compute the new sections
     new_sections = [...result_before.sections, ...result_after.sections].map(
       (e) => ({ ...e })
